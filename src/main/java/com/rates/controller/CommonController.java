@@ -1,5 +1,6 @@
 package com.rates.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,8 +13,8 @@ public interface CommonController<T extends AbstractEntity> {
 	List<T> getRates();
 	
 	@GetMapping
-	List<T> loadRatesData();
+	void loadRatesData();
 	
 	@GetMapping
-	void load();
+	List<T> findBetween(LocalDateTime starTime, LocalDateTime endDate);
 }
