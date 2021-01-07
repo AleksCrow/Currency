@@ -3,24 +3,30 @@ package com.rates.service;
 import java.util.Arrays;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
 import com.rates.model.Privatbank;
 import com.rates.repository.PrivatbankRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class PrivatbankService extends AbstractService<Privatbank, PrivatbankRepository> {
 	
-	private final String API_URL = "https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5";
+	@Value("${api.privatbank}")
+	private String apiUrl;
 
     public PrivatbankService(PrivatbankRepository repository) {
         super(repository);
     }
-	
-	public List<Privatbank> loadRatesData() {
+
+	public void loadRatesData() {
         RestTemplate restTemplate = new RestTemplate();
-        Privatbank[] entity = restTemplate.getForEntity(API_URL, Privatbank[].class).getBody();
-        return Arrays.asList(entity); 
+        List<Privatbank> entity = Arrays.asList(restTemplate.getForEntity(apiUrl, Privatbank[].class).getBody());
+        entity.forEach(repository::save);
+        log.info("Privatbank rates loaded success");
 	}
 }

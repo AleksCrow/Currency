@@ -1,5 +1,6 @@
 package com.rates.controller;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,20 +18,17 @@ public abstract class AbstractController<T extends AbstractEntity, S extends Com
 	}
 
 	@Override
-	public List<T> getRates() {
-		return service.findAll();
+	public List<T> getRates() { 
+		return service.findAllByCurrency();
 	}
 
 	@Override
-	public List<T> loadRatesData() {
-		return service.loadRatesData();
+	public void loadRatesData() {
+		service.loadRatesData();
 	}
 
 	@Override
-	public void load() {
-		List<T> entityList = service.loadRatesData();
-		service.save(entityList);
+	public List<T> findBetween(LocalDateTime starTime, LocalDateTime endTime) {
+		return service.findBetween(starTime, endTime);
 	}
-	
-	
 }

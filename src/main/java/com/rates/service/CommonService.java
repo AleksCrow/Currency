@@ -1,14 +1,15 @@
 package com.rates.service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import com.rates.model.AbstractEntity;
 
 public interface CommonService<T extends AbstractEntity> {
 	
-	List<T> findAll();
+	List<T> findAllByCurrency();
 	
-	List<T> loadRatesData();
-
-	void save(List<T> entity);
+	void loadRatesData();
+	
+	List<T> findBetween(LocalDateTime startTime, LocalDateTime endTime);
 }
