@@ -8,8 +8,8 @@
 /swagger-ui/ - swagger
 
 /average/update - update databases<br>
-/average/result - resul by last update<br>
-/average/filter?startTime[yyyy-MM-dd'T'hh-MM-ss]&endTime[yyyy-MM-dd'T'hh-MM-ss] - filter by time
+/average/result - resulе by last update<br>
+/average/filter?startTime[yyyy-MM-dd'T'hh-MM-ss]&endTime[yyyy-MM-dd'T'hh-MM-ss] - filter by time. Can be used one of parameters
 
 Minfin api replaced on mock api in application.properties
 Controlers for different proveders can be deleted or used for update app
