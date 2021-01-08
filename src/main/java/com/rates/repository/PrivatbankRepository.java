@@ -6,10 +6,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rates.model.Privatbank;
 
 @Repository
+@Transactional(readOnly = true)
 public interface PrivatbankRepository extends CommonRepository<Privatbank> {
 
 	@Query("select r FROM Privatbank r WHERE r.sourceCurrency IN ('USD', 'EUR', 'RUR')"

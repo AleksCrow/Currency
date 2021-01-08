@@ -6,10 +6,12 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.rates.model.Monobank;
 
 @Repository
+@Transactional(readOnly = true)
 public interface MonobankRepository extends CommonRepository<Monobank> {
 
 	@Query("SELECT r FROM Monobank r WHERE (r.sourceCurrency = 840 or r.sourceCurrency = 978 or r.sourceCurrency = 643)"
