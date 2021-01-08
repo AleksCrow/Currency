@@ -16,4 +16,4 @@ Controlers for different proveders can be deleted or used for update app
 
 There are some inaccuracies in the implementation: privat api not have time, and time data created after update, so if update it often, it can affect the results in filter by time
 
-The task is a little unfinished - no tests. I understand that this is important, but there was not enough time
+The task is a little unfinished - no tests. I understand that this is important. But I couldn't keep up with the time
