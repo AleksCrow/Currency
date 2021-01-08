@@ -1,5 +1,8 @@
 # Currency
 
+### Crontab:
+0 */12 * * * http://localhost:8080/average/update
+
 ### Endpoints:
 
 /swagger-ui/ - swagger
