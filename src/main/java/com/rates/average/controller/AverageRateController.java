@@ -1,8 +1,6 @@
-package com.rates.controller;
+package com.rates.average.controller;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
 import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -15,14 +13,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rates.model.AverageRate;
-import com.rates.service.AverageRateService;
+import com.rates.average.model.AverageRate;
+import com.rates.average.service.AverageRateService;
 
 @RestController
 @RequestMapping("/average")
 public class AverageRateController {
 
-	private AverageRateService service;
+	private final AverageRateService service;
 	
 	protected AverageRateController(AverageRateService service) {
 		this.service = service;

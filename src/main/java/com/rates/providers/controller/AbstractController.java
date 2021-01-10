@@ -1,18 +1,15 @@
-package com.rates.controller;
+package com.rates.providers.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.rates.model.AbstractEntity;
-import com.rates.service.CommonService;
+import com.rates.providers.model.AbstractEntity;
+import com.rates.providers.service.CommonService;
 
 public abstract class AbstractController<T extends AbstractEntity, S extends CommonService<T>> implements CommonController<T> {
 
 	private final S service;
 
-	@Autowired
 	protected AbstractController(S service) {
 		this.service = service;
 	}

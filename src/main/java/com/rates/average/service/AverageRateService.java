@@ -1,4 +1,4 @@
-package com.rates.service;
+package com.rates.average.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -10,9 +10,12 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
-import com.rates.model.AverageRate;
-import com.rates.repository.AverageRateRepository;
-import com.rates.utils.AverageRateUtils;
+import com.rates.average.model.AverageRate;
+import com.rates.average.repository.AverageRateRepository;
+import com.rates.providers.service.MonobankService;
+import com.rates.providers.service.NationalbankService;
+import com.rates.providers.service.PrivatbankService;
+import com.rates.utils.ProviderToAverageRate;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -20,11 +23,11 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class AverageRateService {
 	
-	private MonobankService monobankService;
-	private PrivatbankService privatbankService;
-	private NationalbankService nationalbankService;
+	private final MonobankService monobankService;
+	private final PrivatbankService privatbankService;
+	private final NationalbankService nationalbankService;
 	
-	private AverageRateRepository repository;
+	private final AverageRateRepository repository;
 
 	public AverageRateService(AverageRateRepository repository, 
 						MonobankService monobankService, 
@@ -62,9 +65,9 @@ public class AverageRateService {
 		
 		List<AverageRate> averageRates = new ArrayList<>();
 		
-		monobankService.findBetween(startTime, endTime).forEach(r -> averageRates.add(AverageRateUtils.converter(r)));
-		privatbankService.findBetween(startTime, endTime).forEach(r -> averageRates.add(AverageRateUtils.converter(r)));
-		nationalbankService.findBetween(startTime, endTime).forEach(r -> averageRates.add(AverageRateUtils.converter(r)));
+		monobankService.findBetween(startTime, endTime).forEach(r -> averageRates.add(ProviderToAverageRate.converter(r)));
+		privatbankService.findBetween(startTime, endTime).forEach(r -> averageRates.add(ProviderToAverageRate.converter(r)));
+		nationalbankService.findBetween(startTime, endTime).forEach(r -> averageRates.add(ProviderToAverageRate.converter(r)));
 		
 		List<AverageRate> result = new ArrayList<>();
 		
@@ -85,9 +88,9 @@ public class AverageRateService {
 	private void getAverage() {
 		List<AverageRate> averageRates = new ArrayList<>();
 		
-		monobankService.findAllByCurrency().forEach(r -> averageRates.add(AverageRateUtils.converter(r)));
-		privatbankService.findAllByCurrency().forEach(r -> averageRates.add(AverageRateUtils.converter(r)));
-		nationalbankService.findAllByCurrency().forEach(r -> averageRates.add(AverageRateUtils.converter(r)));
+		monobankService.findAllByCurrency().forEach(r -> averageRates.add(ProviderToAverageRate.converter(r)));
+		privatbankService.findAllByCurrency().forEach(r -> averageRates.add(ProviderToAverageRate.converter(r)));
+		nationalbankService.findAllByCurrency().forEach(r -> averageRates.add(ProviderToAverageRate.converter(r)));
 		
 		Map<String, Integer> mapBuy = getAverageBuy(averageRates);
 		Map<String, Integer> mapSell = getAverageSell(averageRates);

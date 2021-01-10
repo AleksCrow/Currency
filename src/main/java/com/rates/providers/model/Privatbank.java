@@ -1,12 +1,12 @@
-package com.rates.model;
+package com.rates.providers.model;
 
 import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.EqualsAndHashCode;
@@ -16,39 +16,38 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@Table(name = "nationalbank")
+@Table(name = "privatbank")
 @NoArgsConstructor
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode(callSuper = false)
-public class Nationalbank extends AbstractEntity {
-
-	@JsonProperty("currency")
-	@Column(name = "currency")
+public class Privatbank extends AbstractEntity {
+	
+	@JsonProperty("ccy")
+	@Column(name = "ccy")
 	private String sourceCurrency;
 	
-	@JsonProperty("targetCurrency")
-	@Column(name = "targetCurrency")
-	private String targetCurrency = "uah";
+	@JsonProperty("base_ccy")
+	@Column(name = "base_ccy")
+	private String targetCurrency;
 	
-	@JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
 	@JsonProperty("date")
 	@Column(name = "date")
-	private LocalDateTime date;
+	private LocalDateTime date = LocalDateTime.now();
 	
-	@JsonProperty("bid")
-	@Column(name = "bid")
+	@JsonProperty("buy")
+	@Column(name = "buy")
 	private String rateBuy;
 	
-	@JsonProperty("ask")
-	@Column(name = "ask")
+	@JsonProperty("sale")
+	@Column(name = "sale")
 	private String rateSell;
 
-	public Nationalbank(Long id, String sourceCurrency, LocalDateTime date, String rateBuy, String rateSell) {
+	public Privatbank(Long id, String sourceCurrency, String targetCurrency, String rateBuy, String rateSell) {
 		super(id);
 		this.sourceCurrency = sourceCurrency;
-		this.date = date;
+		this.targetCurrency = targetCurrency;
 		this.rateBuy = rateBuy;
 		this.rateSell = rateSell;
 	}

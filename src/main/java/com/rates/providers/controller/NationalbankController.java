@@ -1,4 +1,4 @@
-package com.rates.controller;
+package com.rates.providers.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rates.model.Nationalbank;
-import com.rates.model.Privatbank;
-import com.rates.service.NationalbankService;
-import com.rates.service.PrivatbankService;
+import com.rates.providers.model.Nationalbank;
+import com.rates.providers.model.Privatbank;
+import com.rates.providers.service.NationalbankService;
+import com.rates.providers.service.PrivatbankService;
 
 import lombok.extern.slf4j.Slf4j;
 
