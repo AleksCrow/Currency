@@ -1,9 +1,9 @@
-package com.rates.service;
+package com.rates.providers.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
-import com.rates.model.AbstractEntity;
+import com.rates.providers.model.AbstractEntity;
 
 public interface CommonService<T extends AbstractEntity> {
 	

@@ -1,4 +1,4 @@
-package com.rates.service;
+package com.rates.providers.service;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.rates.model.Monobank;
-import com.rates.repository.MonobankRepository;
+import com.rates.providers.model.Monobank;
+import com.rates.providers.repository.MonobankRepository;
 
 import lombok.extern.slf4j.Slf4j;
 

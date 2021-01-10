@@ -1,4 +1,4 @@
-package com.rates.service;
+package com.rates.providers.service;
 
 import java.util.Arrays;
 import java.util.List;
@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-import com.rates.model.Nationalbank;
-import com.rates.repository.NationalbankRepository;
+import com.rates.providers.model.Nationalbank;
+import com.rates.providers.repository.NationalbankRepository;
 
 import lombok.extern.slf4j.Slf4j;
 

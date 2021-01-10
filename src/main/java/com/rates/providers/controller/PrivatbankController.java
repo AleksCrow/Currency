@@ -1,4 +1,4 @@
-package com.rates.controller;
+package com.rates.providers.controller;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -9,33 +9,31 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rates.model.Monobank;
-import com.rates.service.MonobankService;
+import com.rates.providers.model.Privatbank;
+import com.rates.providers.service.PrivatbankService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @RestController
-@RequestMapping("/mono")
-public class MonobankController extends AbstractController<Monobank, MonobankService> {
+@RequestMapping("/privat")
+public class PrivatbankController extends AbstractController<Privatbank, PrivatbankService> {
 
-	public MonobankController(MonobankService service) {
+	public PrivatbankController(PrivatbankService service) {
 		super(service);
 	}
-
+	
 	@Override
 	@GetMapping("/rates")
-	public List<Monobank> getRates() {
+	public List<Privatbank> getRates() {
 		return super.getRates();
 	}
 	
 	@Override
 	@GetMapping("/filter")
-	public List<Monobank> findBetween(
-			@RequestParam(value = "startTime", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime starTime,
-			@RequestParam(value = "endTime", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime  endTime) {
+	public List<Privatbank> findBetween(@RequestParam(value = "startTime", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime starTime, @RequestParam(value = "endTime", required = false) @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime endTime) {
 		return super.findBetween(starTime, endTime);
 	}
-	
+
 	@Override
 	@GetMapping("/update")
 	public void loadRatesData() {

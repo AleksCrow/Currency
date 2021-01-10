@@ -1,4 +1,4 @@
-package com.rates.repository;
+package com.rates.average.repository;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rates.model.AverageRate;
+import com.rates.average.model.AverageRate;
 
 @Repository
 @Transactional(readOnly = true)

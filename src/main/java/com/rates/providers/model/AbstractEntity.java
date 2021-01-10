@@ -1,4 +1,4 @@
-package com.rates.model;
+package com.rates.providers.model;
 
 import javax.persistence.Access;
 import javax.persistence.AccessType;

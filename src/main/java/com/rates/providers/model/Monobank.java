@@ -1,4 +1,4 @@
-package com.rates.model;
+package com.rates.providers.model;
 
 import java.time.LocalDateTime;
 import java.util.Currency;

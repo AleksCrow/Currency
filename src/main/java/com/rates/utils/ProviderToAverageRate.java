@@ -1,11 +1,11 @@
 package com.rates.utils;
 
-import com.rates.model.AverageRate;
-import com.rates.model.Monobank;
-import com.rates.model.Nationalbank;
-import com.rates.model.Privatbank;
+import com.rates.average.model.AverageRate;
+import com.rates.providers.model.Monobank;
+import com.rates.providers.model.Nationalbank;
+import com.rates.providers.model.Privatbank;
 
-public class AverageRateUtils {
+public class ProviderToAverageRate {
 
 	public static AverageRate converter(Monobank rate) {
 		return new AverageRate(rate.getSourceCurrency().toString(), 

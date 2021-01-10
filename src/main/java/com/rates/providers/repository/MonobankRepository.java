@@ -1,4 +1,4 @@
-package com.rates.repository;
+package com.rates.providers.repository;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.rates.model.Monobank;
+import com.rates.providers.model.Monobank;
 
 @Repository
 @Transactional(readOnly = true)

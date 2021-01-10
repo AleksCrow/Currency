@@ -1,4 +1,4 @@
-package com.rates.service;
+package com.rates.providers.service;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.rates.model.AbstractEntity;
-import com.rates.repository.CommonRepository;
+import com.rates.providers.model.AbstractEntity;
+import com.rates.providers.repository.CommonRepository;
 
 import lombok.extern.slf4j.Slf4j;
 
