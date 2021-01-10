@@ -1,7 +1,7 @@
 # Currency
 
-### Crontab:
-0 */12 * * * http://localhost:8080/average/update
+### Cron job: 
+Information update was set at 6 and 18 hours ev'ry day: 0 0 6,18 * * *
 
 ### Endpoints:
 
