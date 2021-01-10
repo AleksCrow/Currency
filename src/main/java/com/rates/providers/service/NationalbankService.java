@@ -28,9 +28,9 @@ public class NationalbankService extends AbstractService<Nationalbank, Nationalb
         RestTemplate restTemplate = new RestTemplate();
         List<Nationalbank> entity = Arrays.asList(restTemplate.getForEntity(apiUrl, Nationalbank[].class).getBody());
         List<Nationalbank> ratesListFromDb = repository.findAll();
-		if (ratesListFromDb.stream().noneMatch(entity::contains)) {
-			entity.forEach(repository::save);
-		}
+	if (ratesListFromDb.stream().noneMatch(entity::contains)) {
+		entity.forEach(repository::save);
+	}
         log.info("Nationalbank rates loaded success");
 	}
 }
