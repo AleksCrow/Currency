@@ -8,7 +8,7 @@ Information update was set at 6 and 18 hours ev'ry day: 0 0 6,18 * * *
 /swagger-ui/ - swagger
 
 /average/update - update databases<br>
-/average/result - resulе by last update<br>
+/average/result - result by last update<br>
 /average/filter?startTime[yyyy-MM-dd'T'hh-MM-ss]&endTime[yyyy-MM-dd'T'hh-MM-ss] - filter by time. Can be used one of parameters
 
 Minfin api replaced on mock api in application.properties.
