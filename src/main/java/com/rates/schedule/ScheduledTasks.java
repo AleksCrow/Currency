@@ -6,6 +6,7 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import com.rates.average.controller.AverageRateController;
+import com.rates.average.service.AverageRateService;
 
 import lombok.extern.slf4j.Slf4j;
 
@@ -13,15 +14,15 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 public class ScheduledTasks {
 	
-	private final AverageRateController controller;
+	private final AverageRateService service;
 	
-	protected ScheduledTasks(AverageRateController controller) {
-		this.controller = controller;
+	protected ScheduledTasks(AverageRateService service) {
+		this.service = service;
 	}
 
 	@Scheduled(cron = "0 0 6,18 * * *")
 	public void updateData() {
-		controller.loadRatesData();
+		service.loadRatesData();
 		log.info("Update time is: {}", LocalDateTime.now());
 	}
 }
