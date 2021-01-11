@@ -40,15 +40,14 @@ public class AverageRateService {
     }
 	
 	public List<AverageRate> getRates() {
-		log.info("rates load");
+		getAverage();
+		log.info("rates loaded");
 		return repository.findTop3ByOrderByDateDesc();
 	}
 	
 	public void loadRatesData() {
 		loadData();
 		log.info("Rates from api loaded");
-		getAverage();
-		log.info("Average rates ready");
 	}
 	
 	public List<AverageRate> getAverageBetween(LocalDateTime startTime, LocalDateTime endTime) {
@@ -85,7 +84,7 @@ public class AverageRateService {
 		return result;
 	}
 	
-	private void getAverage() {
+	public void getAverage() {
 		List<AverageRate> averageRates = new ArrayList<>();
 		
 		monobankService.findAllByCurrency().forEach(r -> averageRates.add(ProviderToAverageRate.converter(r)));
@@ -101,13 +100,14 @@ public class AverageRateService {
 								LocalDateTime.now(), 
 								((float) a.getValue()) / 10000, 
 								((float) mapSell.get(a.getKey()) / 10000))));
+		
+		log.info("Average rates ready");
 	}
 	
 	private void loadData() {
 		monobankService.loadRatesData();
 		privatbankService.loadRatesData();
 		nationalbankService.loadRatesData();
-		
 	}
 	
 	private Map<String, Integer> getAverageBuy(List<AverageRate> averageRates) {
