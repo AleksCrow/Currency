@@ -34,7 +34,7 @@ public class Privatbank extends AbstractEntity {
 	
 	@JsonProperty("date")
 	@Column(name = "date")
-	private LocalDateTime date = LocalDateTime.now();
+	private LocalDateTime date;
 	
 	@JsonProperty("buy")
 	@Column(name = "buy")
@@ -50,5 +50,26 @@ public class Privatbank extends AbstractEntity {
 		this.targetCurrency = targetCurrency;
 		this.rateBuy = rateBuy;
 		this.rateSell = rateSell;
+	}
+
+	public Privatbank(Long id, String sourceCurrency, String targetCurrency, LocalDateTime date, String rateBuy,
+			String rateSell) {
+		super(id);
+		this.sourceCurrency = sourceCurrency;
+		this.targetCurrency = targetCurrency;
+		this.date = date;
+		this.rateBuy = rateBuy;
+		this.rateSell = rateSell;
+	}
+
+	public LocalDateTime getDate() {
+		if (date == null) {
+			return LocalDateTime.now();
+		}
+		return date;
+	}
+
+	public void setDate(LocalDateTime date) {
+		this.date = date;
 	}
 }

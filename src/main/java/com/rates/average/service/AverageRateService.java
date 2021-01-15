@@ -2,10 +2,11 @@ package com.rates.average.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
@@ -73,10 +74,14 @@ public class AverageRateService {
 		Map<String, Integer> mapBuy = getAverageBuy(averageRates);
 		Map<String, Integer> mapSell = getAverageSell(averageRates);
 		
+		LocalDateTime lastTime = averageRates.stream()
+				.map(AverageRate::getDate)
+				.max(LocalDateTime::compareTo).orElse(LocalDateTime.now());
+		
 		mapBuy.entrySet().forEach(a -> result.add(
 						new AverageRate(a.getKey(), 
 							"UAH", 
-							LocalDateTime.now(), 
+							lastTime, 
 							((float) a.getValue() / 10000), 
 							((float) mapSell.get(a.getKey()) / 10000))));
 		
@@ -87,6 +92,8 @@ public class AverageRateService {
 	public void getAverage() {
 		List<AverageRate> averageRates = new ArrayList<>();
 		
+		log.info("{}", privatbankService.findAllByCurrency());
+		
 		monobankService.findAllByCurrency().forEach(r -> averageRates.add(ProviderToAverageRate.converter(r)));
 		privatbankService.findAllByCurrency().forEach(r -> averageRates.add(ProviderToAverageRate.converter(r)));
 		nationalbankService.findAllByCurrency().forEach(r -> averageRates.add(ProviderToAverageRate.converter(r)));
@@ -94,10 +101,14 @@ public class AverageRateService {
 		Map<String, Integer> mapBuy = getAverageBuy(averageRates);
 		Map<String, Integer> mapSell = getAverageSell(averageRates);
 		
+		LocalDateTime lastTime = averageRates.stream()
+									.map(AverageRate::getDate)
+									.max(LocalDateTime::compareTo).orElse(LocalDateTime.now());
+		
 		mapBuy.entrySet().forEach(a -> repository.save(
 						new AverageRate(a.getKey(), 
 								"UAH", 
-								LocalDateTime.now(), 
+								lastTime, 
 								((float) a.getValue()) / 10000, 
 								((float) mapSell.get(a.getKey()) / 10000))));
 		
