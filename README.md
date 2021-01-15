@@ -1,6 +1,6 @@
 # Currency
 
-### Cron job: 
+### Schedule: 
 Information update was set at 6 and 18 hours ev'ry day: 0 0 6,18 * * *
 
 ### Endpoints:
@@ -14,5 +14,3 @@ Information update was set at 6 and 18 hours ev'ry day: 0 0 6,18 * * *
 Minfin api replaced on mock api in application.properties.
 
 There are some inaccuracies in the implementation: privat api not have time, and time data created after update, so if update it often, it can affect the results in filter by time.
-
-The task is a little unfinished - no tests. I understand that this is important. But I couldn't keep up with the time.
